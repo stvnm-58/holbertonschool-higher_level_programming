@@ -51,7 +51,7 @@ class CustomObject:
 
     @classmethod
     def deserialize(cls, filename):
-        """Charge et renvoie une instance de CustomObject depuis un fichier binaire.
+        """Charge et renvoie une instance de CustomObject depuis un fichier.
 
         Args:
             filename (str): Le nom du fichier binaire à lire.
