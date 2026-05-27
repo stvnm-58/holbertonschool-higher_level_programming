@@ -1,37 +1,38 @@
-#!/usr/bin/env python3
-"""Module for serializing and deserializing custom objects using pickle."""
-
+#!/usr/bin/python3
+"""
+Module pour la sérialisation d'objets personnalisés avec pickle.
+"""
 import pickle
 
 
 class CustomObject:
-    """A custom class representing an individual profile."""
-
+    """Classe représentant un objet personnalisé à sérialiser."""
     def __init__(self, name, age, is_student):
-        """Initialize the attributes."""
+        """Initialise les attributs de l'objet."""
         self.name = name
         self.age = age
         self.is_student = is_student
 
     def display(self):
-        """Print the object's attributes with the exact requested format."""
-        print(f"Name: {self.name}")
-        print(f"Age: {self.age}")
-        print(f"Is Student: {self.is_student}")
+        print(
+            f"Name: {self.name}\n"
+            f"Age: {self.age}\n"
+            f"Is Student: {self.is_student}"
+        )
 
     def serialize(self, filename):
-        """Serialize the current instance to a binary file."""
+        """Sérialise l'instance actuelle avec pickle."""
         try:
-            with open(filename, "wb") as f:
-                pickle.dump(self, f)
-        except (OSError, pickle.PickleError):
+            with open(filename, "wb") as file:
+                pickle.dump(self, file)
+        except Exception:
             return None
 
     @classmethod
     def deserialize(cls, filename):
-        """Load and return an instance of CustomObject from a binary file."""
+        """Charge et retourne une instance de CustomObject depuis un fichier"""
         try:
-            with open(filename, "rb") as f:
-                return pickle.load(f)
-        except (OSError, pickle.PickleError, AttributeError):
+            with open(filename, "rb") as file:
+                return pickle.load(file)
+        except Exception:
             return None
