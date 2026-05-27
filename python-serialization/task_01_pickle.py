@@ -45,7 +45,7 @@ class CustomObject:
             with open(filename, "wb") as f:
                 # pickle.dump écrit l'objet entier (self) dans le fichier f
                 pickle.dump(self, f)
-        except (OSEorror, pickle.PickleError):
+        except (OSError, pickle.PickleError):
             # Capture des erreurs de fichier ou de sérialisation
             return None
 
