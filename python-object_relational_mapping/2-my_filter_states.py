@@ -23,7 +23,7 @@ if __name__ == "__main__":
         "WHERE name LIKE BINARY '{}' "
         "ORDER BY id ASC"
     ).format(state_name_searched)
-    
+
     cursor.execute(query)
     rows = cursor.fetchall()
 
