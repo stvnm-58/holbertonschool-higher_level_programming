@@ -1,34 +1,33 @@
 #!/usr/bin/python3
-"""Liste tous les états de la table 'states'."""
+"""Filtre les états par argument."""
 import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    # On vérifie que les 3 arguments requis sont bien présents
-    if len(sys.argv) >= 4:
-        username = sys.argv[1]
-        password = sys.argv[2]
-        database = sys.argv[3]
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
+    state_name_searched = sys.argv[4]
 
-        # Connexion à la base de données
-        db = MySQLdb.connect(
-            host="localhost",
-            port=3306,
-            user=username,
-            passwd=password,
-            db=database
-        )
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=mysql_username,
+        passwd=mysql_password,
+        db=database_name
+    )
 
-        cursor = db.cursor()
-        
-        # Exécution et récupération
-        cursor.execute("SELECT * FROM states ORDER BY id ASC")
-        rows = cursor.fetchall()
+    cur = db.cursor()
+    query = (
+        "SELECT * FROM states "
+        "WHERE name LIKE BINARY '{}' "
+        "ORDER BY id ASC"
+    ).format(state_name_searched)
+    cur.execute(query)
+    rows = cur.fetchall()
 
-        # Affichage
-        for row in rows:
-            print(row)
+    for row in rows:
+        print(row)
 
-        # Fermeture des connexions
-        cursor.close()
-        db.close()
+    cur.close()
+    db.close()
