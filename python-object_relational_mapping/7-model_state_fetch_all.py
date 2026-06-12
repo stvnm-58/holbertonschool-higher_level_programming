@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     # 2. Création de la fabrique de sessions
     Session = sessionmaker(bind=engine)
-    
+
     # 3. Ouverture de la session de travail
     session = Session()
 
