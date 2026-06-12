@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-Ce module connecte un script Python à une base de données MySQL
-pour lister tous les états de la table 'states'.
-"""
+""" liste tous les états de la table 'states'."""
 import sys
 import MySQLdb
 
@@ -11,7 +8,6 @@ if __name__ == "__main__":
     password = sys.argv[2]
     database = sys.argv[3]
 
-    # Établissement de la connexion avec la base de données
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
