@@ -18,12 +18,16 @@ if __name__ == "__main__":
     )
 
     cursor = db.cursor()
+
+    # Récupération de toutes les villes triées par ID
     query = "SELECT * FROM cities ORDER BY id ASC"
     cursor.execute(query)
+    
     rows = cursor.fetchall()
 
     for row in rows:
         print(row)
 
+    # Fermeture des accès
     cursor.close()
     db.close()
