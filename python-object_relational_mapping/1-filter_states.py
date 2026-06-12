@@ -4,30 +4,30 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    database_name = sys.argv[3]
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
     state_name_searched = sys.argv[4]
 
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=mysql_username,
-        passwd=mysql_password,
-        db=database_name
+        user=username,
+        passwd=password,
+        db=database
     )
 
-    cur = db.cursor()
+    cursor = db.cursor()
     query = (
         "SELECT * FROM states "
         "WHERE name LIKE BINARY '{}' "
         "ORDER BY id ASC"
     ).format(state_name_searched)
-    cur.execute(query)
-    rows = cur.fetchall()
+    cursor.execute(query)
+    rows = cursor.fetchall()
 
     for row in rows:
         print(row)
 
-    cur.close()
+    cursor.close()
     db.close()
