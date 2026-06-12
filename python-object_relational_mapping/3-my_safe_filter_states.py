@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Liste les états correspondant à l'argument, sécurisé contre l'injection SQL."""
+"""Liste les états correspondant, sécurisé contre l'injection SQL."""
 import sys
 import MySQLdb
 
