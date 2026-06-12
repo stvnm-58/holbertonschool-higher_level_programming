@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Liste toutes les villes d'un état passé en argument depuis la base hbtn_0e_4_usa."""
+"""Liste toutes les villes en argument depuis la base hbtn_0e_4_usa."""
 import sys
 import MySQLdb
 
