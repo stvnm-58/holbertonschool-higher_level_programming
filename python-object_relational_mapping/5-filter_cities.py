@@ -4,20 +4,20 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
     state_name_searched = sys.argv[4]
 
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database
+        user=mysql_username,
+        passwd=mysql_password,
+        db=database_name
     )
 
-    cursor = db.cursor()
+    cur = db.cursor()
     query = """
     SELECT cities.name
     FROM cities
@@ -25,11 +25,11 @@ if __name__ == "__main__":
     WHERE states.name = %s
     ORDER BY cities.id ASC
     """
-    cursor.execute(query, (state_name_searched))
-    rows = cursor.fetchall()
+    cur.execute(query, (state_name_searched,))
+    rows = cur.fetchall()
 
     cities_list = [row[0] for row in rows]
     print(", ".join(cities_list))
 
-    cursor.close()
+    cur.close()
     db.close()
