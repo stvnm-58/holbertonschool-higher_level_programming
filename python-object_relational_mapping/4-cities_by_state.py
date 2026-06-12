@@ -24,7 +24,7 @@ if __name__ == "__main__":
     ORDER BY cities.id ASC
     """
     cursor.execute(query)
-    rows = cur.fetchall()
+    rows = cursor.fetchall()
 
     for row in rows:
         print(row)
