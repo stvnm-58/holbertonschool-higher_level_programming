@@ -1,32 +1,33 @@
 #!/usr/bin/python3
-"""Liste toutes les villes de la base de données hbtn_0e_4_usa."""
+"""Répertorie toutes les villes de la base de données."""
 import sys
 import MySQLdb
 
 if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
 
     db = MySQLdb.connect(
-        host="127.0.0.1",
+        host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database
+        user=mysql_username,
+        passwd=mysql_password,
+        db=database_name
     )
 
-    cursor = db.cursor()
+    cur = db.cursor()
     query = """
     SELECT cities.id, cities.name, states.name
     FROM cities
+    JOIN states ON cities.state_id = states.id
     ORDER BY cities.id ASC
     """
-    cursor.execute(query)
-    rows = cursor.fetchall()
+    cur.execute(query)
+    rows = cur.fetchall()
 
     for row in rows:
         print(row)
 
-    cursor.close()
+    cur.close()
     db.close()
