@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     # Connexion à la base de données
     db = MySQLdb.connect(
-        host="127.0.0.1",
+        host="localhost",
         port=3306,
         user=username,
         passwd=password,
@@ -18,16 +18,12 @@ if __name__ == "__main__":
     )
 
     cursor = db.cursor()
-
-    # Récupération de toutes les villes triées par ID
     query = "SELECT * FROM cities ORDER BY id ASC"
     cursor.execute(query)
-    
     rows = cursor.fetchall()
 
     for row in rows:
         print(row)
 
-    # Fermeture des accès
     cursor.close()
     db.close()
