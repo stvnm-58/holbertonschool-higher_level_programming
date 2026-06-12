@@ -18,8 +18,8 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
     query = """
-    SELECT cities.id, cities.name, states.name 
-    FROM cities 
+    SELECT cities.id, cities.name, states.name
+    FROM cities
     ORDER BY cities.id ASC
     """
     cursor.execute(query)
