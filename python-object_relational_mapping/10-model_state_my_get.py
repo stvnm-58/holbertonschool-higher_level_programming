@@ -15,7 +15,7 @@ if __name__ == "__main__":
     db_url = 'mysql+mysqldb://{}:{}@127.0.0.1:3306/{}'.format(
         username, password, database
     )
-    
+
     engine = create_engine(db_url, pool_pre_ping=True)
 
     # Création de la session
