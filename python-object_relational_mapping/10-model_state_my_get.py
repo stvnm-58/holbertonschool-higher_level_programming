@@ -11,21 +11,21 @@ if __name__ == "__main__":
     database = sys.argv[3]
     state_name_searched = sys.argv[4]
 
-    # Connexion à la base de données
-    engine = create_engine(
-        'mysql+mysqldb://{}:{}@127.0.0.1:3306/{}'.format(
-            username, password, database
-        ),
-        pool_pre_ping=True
+    # Connexion à la base de données avec retour à la ligne PEP 8
+    db_url = 'mysql+mysqldb://{}:{}@127.0.0.1:3306/{}'.format(
+        username, password, database
     )
+    
+    engine = create_engine(db_url, pool_pre_ping=True)
 
     # Création de la session
     Session = sessionmaker(bind=engine)
     session = Session()
 
     # Requête avec filtre sur le nom exact de l'état
-    # .first() renvoie le premier objet trouvé ou None s'il n'y a pas de correspondance
-    state = session.query(State).filter(State.name == state_name_searched).first()
+    state = session.query(State).filter(
+        State.name == state_name_searched
+    ).first()
 
     # Affichage du résultat selon les contraintes de l'énoncé
     if state is not None:
