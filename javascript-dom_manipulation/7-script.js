@@ -1,10 +1,10 @@
-const listMoviesElement = document.querySelector('#list_movies');
-fetch('https://swapi-api.hbtn.io/api/films/?format=json')
-  .then(response => response.json())
-  .then(data => {
-    data.results.forEach(movie => {
-        const movieLi = document.createElement('li');
-        movieLi.textContent = movie.title;
-        listMoviesElement.appendChild(movieLi);
+const characterElement = document.querySelector('#character');
+
+function getCharacter() {
+  fetch('https://swapi-api.hbtn.io/api/people/5/?format=json')
+    .then(response => response.json())
+    .then(data => {
+      characterElement.textContent = data.name;
     });
-  });
+}
+getCharacter();
